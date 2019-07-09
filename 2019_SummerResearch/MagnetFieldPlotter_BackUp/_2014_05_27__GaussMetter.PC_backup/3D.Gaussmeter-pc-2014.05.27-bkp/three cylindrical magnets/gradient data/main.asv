@@ -1,0 +1,37 @@
+clear all
+clc
+close all
+A_20=load('y-20.txt');
+X_20=polyfit(A_20(:,2),A_20(:,4),1);
+Y_20=polyval(X_20,A_20(:,2));
+
+A_25=load('y-25.txt');
+X_25=polyfit(A_25(:,2),A_25(:,4),1);
+Y_25=polyval(X_25,A_25(:,2));
+
+A_28=load('y-28.txt');
+X_28=polyfit(A_28(:,2),A_28(:,4),1);
+Y_28=polyval(X_28,A_28(:,2));
+
+A_30=load('y-30.txt');
+X_30=polyfit(A_30(:,2),A_30(:,4),1);
+Y_30=polyval(X_30,A_30(:,2));
+
+A_35=load('y-35.txt');
+X_20=polyfit(A_20(:,2),A_20(:,4),1);
+Y_20=polyval(X_20,A_20(:,2));
+
+A_40=load('y-40.txt');
+figure(1);
+plot(A_20(:,2),A_20(:,4),'r',A_20(:,2),Y_20,'r.');
+hold on;
+plot(A_25(:,2),A_25(:,4),'b');
+hold on;
+plot(A_28(:,2),A_28(:,4),'y');
+hold on;
+plot(A_30(:,2),A_30(:,4),'k');
+hold on;
+plot(A_35(:,2),A_35(:,4),'c');
+hold on;
+plot(A_40(:,2),A_40(:,4),'m');
+grid on;

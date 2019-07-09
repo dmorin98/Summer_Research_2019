@@ -1,0 +1,22 @@
+;This Pick and Place example moves X,Y
+;Placing parts 8x in 3 rows
+;The common pick/start location is set to zero absolute
+;Output 1 is used to signal an external gripper
+
+E
+PM-1,		;Select and clear program 1 (subroutine)
+IA1M0,IA2M0	;Go to start
+U5		;Output 1 on (Hold part)
+
+PM-0		;Select and clear program 0 (main program)
+IA1M-0,IA2M-0	;Make this location zero (Start)
+U5		;Output 1 on (Hold part)
+IA1M1600	;Move from pick location to place 1
+LM0		;Set loop marker here, loops will branch here
+U4		;Output 1 off (Drop part)
+JM-1		;Jump/return to program 1 to get another part
+I1M800		;Advance to next place location
+L8		;Do from loop marker 8x
+I2M1200		;Advance Y to next row
+L-3		;Do 3 rows
+U4		;End with Output 1 off (Drop part)

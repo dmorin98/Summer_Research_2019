@@ -1,0 +1,46 @@
+;This Pick and Place example moves X,Y,Z
+;Y axis moves tray of parts to advance next row
+;Placing parts 5x in 3 rows
+;The common pick/start location is set to zero absolute
+;Output 1 is used to signal an external gripper
+
+E
+PM-2		;Program 2 for getting part from Pick location
+IA1M0		;Move to home
+I3M400		;Index Z down to part
+U5,P1		;Output 1 on to grab part, pause too
+I3M-400		;Have part, now Index Z up
+
+PM-1		;Program 1 for placement of parts in row
+I3M400		;Index Z down to part
+U4		;Let part go
+I3M-400		;Z back up
+JM-2		;Go home and pick up another part
+I1M800		;Advance to next place location
+L5		;Do 5 places per row
+
+
+PM-3		;Program 3 is main program after start
+IA1M1600	;Move out to 1st place location
+JM1		;jump to program 1 to do row
+IA1M0		;Clear out absolute saved moves from JM-X
+I2M1200		;move motor 2 over next row
+L3		;Advance another row (3 rows) and repeat
+IA2M0		;Y home
+U90		;Wait for operator to change tray & press Run
+L0		;Start again (loop forever)
+
+
+PM-0		;Program 0 is start/setup program
+IA1M-0,IA2M-0	;Make this location zero (Start)
+S1M3000,S2M3000,A1M6,A2M6	;Set speeds & accels
+S3M2000,A3M4	;Set Z speed & accel
+JM2		;Grab 1st part
+J3		;Jump to Program 3 (it will take over now)
+
+
+
+
+
+
+

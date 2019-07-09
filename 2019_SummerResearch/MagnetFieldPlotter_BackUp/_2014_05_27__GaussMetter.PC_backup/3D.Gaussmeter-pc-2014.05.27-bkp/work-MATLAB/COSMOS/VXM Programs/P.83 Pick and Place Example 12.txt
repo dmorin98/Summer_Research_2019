@@ -1,0 +1,25 @@
+;This Pick and Place example moves one axis
+;Placing parts 10x in one row
+;The common pick/start location is set to zero absolute
+;Output 1 is used to signal an external gripper
+;Gripper is used to move parts from Pick to Place location 
+
+E
+;Program 1 is subroutine to go to pick location
+PM-1		;Select and clear program 1
+IA1M0		;Go to start
+U5		;Output 1 on to activate gripper
+P2		;Pause .2 sec. to let gripper grab part
+
+;Program 0 is main program
+PM-0		;Select and clear program 0
+IA1M-0		;Make this location zero (Start)
+U5		;Output 1 on to activate gripper
+P2		;Pause .2 sec. to let gripper grab part
+IA1M1000	;Move from pick location to place 1
+LM0		;Set loop marker here, loops will branch here
+U4		;Output 1 off to ungrip part
+JM-1		;Jump/return to program 1 to get another part
+I1M800		;Advance to next place location
+L10		;Do from loop marker 10x
+U4		;End with part not gripped
