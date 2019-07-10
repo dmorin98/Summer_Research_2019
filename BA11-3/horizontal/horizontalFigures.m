@@ -8,7 +8,7 @@ colorbar
 
 figure(2)
 
-plot(xHorizontal,B1(:,(21:31)))
+plot(xHorizontal,B1(:,(:31)))
 
 hold on
 plot(z,B)
