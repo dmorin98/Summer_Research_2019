@@ -61,9 +61,9 @@ try
     % end
 
     
-catch e
-    fprintf(1,'Error: Cannot measure field:\n%s',e.identifier);
-end
+    catch e
+        fprintf(1,'Error: Cannot measure field:\n%s',e.identifier);
+    end
 
 end
 

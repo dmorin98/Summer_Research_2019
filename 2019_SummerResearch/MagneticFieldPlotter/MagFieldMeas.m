@@ -297,13 +297,13 @@ end
 increment = str2double(get(eb(9),'string'));
 
 if nargin == 1 && o1 == 2
-    xyE = 0.208;  %This is the diameter of the probe/2
-    zE = 0.18;    %This is the length from sensitive area to probe tip
+    xyE = 0.208;  %This is half diameter of probe (cm)
+    zE = 0.18;    %This is the length from sensitive area to probe tip on Z(cm)
     check = get(cb(10), 'value');  %Value of 'Removing SidetoSide' (
                                    %less accuracy but will be faster and will not move side to side)
     
     Npp = str2double(get(eb(8),'string'));
-
+    start
     %If 'Z' is checked
     if L==3
         
@@ -321,11 +321,8 @@ if nargin == 1 && o1 == 2
         By = zeros(nz,1);
         Bz = zeros(nz,1);
         B = zeros(nz,1);
-        start
         
         for kk =1:nz
-
-            
                 
             if check == 1
                 F = FieldM(Npp,s1);
@@ -366,7 +363,6 @@ if nargin == 1 && o1 == 2
     
         %If 'X' is checked
         if L==1
-            start
             Xmin = str2double(get(eb(1),'string'));
             Xmax = str2double(get(eb(2),'string'));
             
@@ -411,9 +407,7 @@ if nargin == 1 && o1 == 2
                 plot(ax(1),x(1:kk),B(1:kk),'-k','linewidth',2)
                 xlabel(ax(1),'X (cm)','FontSize',16)
                 ylabel(ax(1),'B_0 (G)','FontSize',16)
-                
                 drawnow
-                
                 fprintf(fileIDX,'%d,%d,%d,%d,%d\n',(step-1)*increment,B(kk),Bx(kk),By(kk),Bz(kk));
             end
             save X_1D_Magnetic_field Bx By Bz B x
@@ -422,7 +416,6 @@ if nargin == 1 && o1 == 2
             
         %If 'Y' is checked
         if L==2
-            start
             Ymin = str2double(get(eb(1),'string'));
             Ymax = str2double(get(eb(2),'string'));
 
@@ -471,12 +464,11 @@ if nargin == 1 && o1 == 2
                 disp('asd')
             end
             save Y_1D_Magnetic_field Bx By Bz B y
-            fclose(fileIDY)
+            fclose(fileIDY);
         end
         
         %If 'XY' is checked
         if L==4
-            start
             Xmin = str2double(get(eb(3),'string'));
             Xmax = str2double(get(eb(4),'string'));
             Ymin = str2double(get(eb(5),'string'));
@@ -574,9 +566,9 @@ if nargin == 1 && o1 == 2
             save XY_2D_Magnetic_field01 Bx By Bz B y x
             fclose(fileIDXY);
         end
+        
         %If 'YZ'is checked
         if L==5
-            start
             Ymin = str2double(get(eb(3),'string'));
             Ymax = str2double(get(eb(4),'string'));
             Zmin = str2double(get(eb(5),'string'));
@@ -668,9 +660,10 @@ if nargin == 1 && o1 == 2
             save YZ_2D_Magnetic_field Bx By Bz B z y
             fclose(fileIDYZ);
         end
+        
         %If 'ZX' is checked
         if L==6
-            start
+            
             Zmin = str2double(get(eb(3),'string'));
             Zmax = str2double(get(eb(4),'string'));
             Xmin = str2double(get(eb(5),'string'));
@@ -700,8 +693,8 @@ if nargin == 1 && o1 == 2
                 fprintf(fileIDZX,'%d,',(Xmin+(xx*increment)));
             end
             fprintf(fileIDZX,'\n\n');
-% x=z
-% y=x
+
+            
             for kk =1:nz
                 if kk == 1
                     movem(s2,1,Xmin);
