@@ -1,14 +1,21 @@
 %   This is the MagFieldMeas which is used to measure magnetic field with the
 %   LakeShore Gaussmeter, and Velmex stepping motors.
 %   
-%   This was last updated June 28th 2019 by Devin Morin
+%   This was last updated July 15th 2019 by Devin Morin
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function MagFieldMeas(o1,o2)
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   The program is broken up into two main parts. The first part is the UI
+%   elements, which are contained in one function. The second part is the
+%   logic and measurement/motor section that will look at inputs into the
+%   UI elements for direction.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 global hp pb cb eb tb ax
-global zo xyE zE s1 s2 L increment check
+global xyE zE s1 s2 L 
 if nargin ==0
     close all
     scrsz = get(0,'ScreenSize');
@@ -63,16 +70,16 @@ if nargin ==0
         'String','0','Position',[1/4 0.05 1/5 .15],'value',1,'fontsize',13,'Callback','');
     eb(6) = uicontrol('parent',hp(2),'Style', 'edit','units','normalized',...
         'String','5','Position',[3/4 0.05 1/5 .15],'value',1,'fontsize',13,'Callback','');
-    %% data
+    %% Data UI
     hp(3)= uipanel('Title','Data','FontSize',12,'units',...
         'normalized','Position',[0.01 0.835 1/4 .16 ]);
     
     tb(7) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
         'String','Move (cm)','Position',[0 0.8 1/3 .2],'fontsize',13,'Callback','');
     tb(8) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
-        'String','averages','Position',[1/3 .8 1/3 .2],'fontsize',13,'Callback','');
+        'String','Averages','Position',[1/3 .8 1/3 .2],'fontsize',13,'Callback','');
     tb(9) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
-        'String','Center','Position',[2/3 .8 1/3 .2],'fontsize',13,'Callback','');
+        'String','Axis','Position',[2/3 .8 1/3 .2],'fontsize',13,'Callback','');
     
     eb(7) = uicontrol('parent',hp(3),'Style', 'edit','units','normalized',...
         'String','0.1','Position',[0.05 .7 1/5 .15],'value',1,'fontsize',13,'Callback','');
@@ -85,21 +92,21 @@ if nargin ==0
     cb(8) = uicontrol('parent',hp(3),'Style', 'check','units','normalized',...
         'String','Y','Position',[4/5 0.5 1/5 .1],'value',0,'fontsize',13,'Callback','MagFieldMeas(3,2)');
     cb(9) = uicontrol('parent',hp(3),'Style', 'check','units','normalized',...
-        'String','Z','Position',[4/5 0.31 1/5 .1],'value',0,'fontsize',13,'Callback','MagFieldMeas(3,3)');
+        'String','Z','Position',[4/5 0.31 1/5 .1],'value',1,'fontsize',13,'Callback','MagFieldMeas(3,3)');
     
     pb(1) = uicontrol('parent',hp(3),'Style', 'push','units','normalized',...
-        'String','Move','Position',[0.15 0.32 1/3 .3],'fontsize',13,'Callback','MagFieldMeas(1)');
-    %% others
+        'String','Move','Position',[0.15 0.19 1/3 .3],'fontsize',13,'Callback','MagFieldMeas(1)');
+    %% Run UI
     
     hp(4)= uipanel('Title','','FontSize',12,'units',...
         'normalized','Position',[0.01 0.05 0.2 .1 ]);
     pb(2) = uicontrol('parent',hp(4),'Style', 'push','units','normalized',...
-        'String','Run 2D','Position',[0 0 1/2 1],'fontsize',13,'Callback','MagFieldMeas(2)');
+        'String','Run 1D/2D','Position',[0 0 1/2 1],'fontsize',13,'Callback','MagFieldMeas(2)');
     pb(3) = uicontrol('parent',hp(4),'Style', 'push','units','normalized',...
         'String','Run 3D','Position',[1/2 0 1/2 1],'fontsize',13,'Callback','MagFieldMeas(4,4)');
     %% 3D Plotting UI
     hp(6)= uipanel('Title','3D Measurement','FontSize',12,'units',...
-        'normalized','Position',[0.01 0.35 0.25 0.2]);
+        'normalized','Position',[0.01 0.38 0.25 0.2]);
     
     
     tb(11) = uicontrol('parent',hp(6),'Style', 'text','units','normalized',...
@@ -132,14 +139,14 @@ if nargin ==0
     
     %% Increment Panel UI
     hp(5)= uipanel('Title','Probe','FontSize',12,'units',...
-        'normalized','Position',[0.01 0.20 0.25 .09 ]);
+        'normalized','Position',[0.01 0.247 0.25 .09 ]);
     
     tb(10) = uicontrol('parent',hp(5),'Style', 'text','units','normalized',...
         'String','Increment(cm)','Position',[0 0.74 0.4 .29],'fontsize',13,'Callback','');
     eb(9) = uicontrol('parent',hp(5),'Style', 'edit','units','normalized',...
-        'String','1','Position',[0.07 .3 0.1 .28],'value',1,'fontsize',13,'Callback','');
+        'String','0.05','Position',[0.07 .3 0.1 .28],'value',1,'fontsize',13,'Callback','');
     cb(10) = uicontrol('parent',hp(5),'Style', 'check','units','normalized',...
-        'String','Remove SideToSide','Position',[0.4 0.4 0.6 .3],'value',0,'fontsize',13);
+        'String','Remove SideToSide','Position',[0.4 0.4 0.6 .3],'value',1,'fontsize',13);
     
 
 
@@ -154,54 +161,59 @@ if nargin ==0
 
 end
 
-%% centering and moving the tip to the initial position
+%% Allowing probe tip to be moved in X,Y,Z.
+if o1==3
+    if o2==1
+        set(cb(8),'value',0);
+        set(cb(9),'value',0);
+    end
+    if o2==2
+        set(cb(7),'value',0);
+        set(cb(9),'value',0);
+    end
+    if o2==3
+        set(cb(8),'value',0);
+        set(cb(7),'value',0);
+    end
+end
+
 if nargin==1 && o1==1
     axx = get(cb(7),'value');
     axy = get(cb(8),'value');
     axz = get(cb(9),'value');
-    
+    Mh = str2double(get(eb(7),'string'));
     if axx == 1             
         start
-        home_m(s2,1)
+        movem(s2,1,Mh);
         stop
     end
     if axy == 1
         start
-        home_m(s2,2)
+        movem(s2,2,Mh);
         stop
     end
     if axz == 1
         start
-        home_m(s2,3)
+        movem(s2,3,Mh);
         stop
     end
-    
-    %After centering the probe, (if the boxes are ticked) the tip is moved.
-    
-    start
-    Mh = str2double(get(eb(7),'string'));
-    zo = Mh;
-    movem(s2,3,zo);
-    stop
-    
     set(cb(1:6),'enable','on')
-    %set(eb(1:2),'enable','off')
+
 end
 %% Selecting the measurent
 %   o1 and o2 values are determined by the check box inputs for XYZ
 %   Changing a box value will recall the method and set the GUI accordingly
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if nargin == 2
     if o1==1 && o2 ==1
         set(cb(1),'value',1);
         set(cb(2:6),'value',0);
-        set(tb(1),'String','X+');
-        set(tb(2),'String','X-')
+        set(tb(1),'String','X-');
+        set(tb(2),'String','X+')
         set(eb(3:6),'enable','off')
         set(tb(3:6),'enable','off')
         set(eb(1:2),'enable','on')
         set(tb(1:2),'enable','on')
-        
         xlabel(ax(1),'X (cm)','FontSize',16)
         ylabel(ax(1),'B_0 (G)','FontSize',16)
         L=1;
@@ -209,8 +221,8 @@ if nargin == 2
         set(cb(1),'value',0)
         set(cb(2),'value',1)
         set(cb(3:6),'value',0)
-        set(tb(1),'String','Y+')
-        set(tb(2),'String','Y-')
+        set(tb(1),'String','Y-')
+        set(tb(2),'String','Y+')
         set(eb(3:6),'enable','off')
         set(tb(3:6),'enable','off')
         set(eb(1:2),'enable','on')
@@ -222,8 +234,8 @@ if nargin == 2
         set(cb(1:2),'value',0)
         set(cb(3),'value',1)
         set(cb(4:6),'value',0)
-        set(tb(1),'String','Z+');
-        set(tb(2),'String','Z-')
+        set(tb(1),'String','Z-');
+        set(tb(2),'String','Z+')
         set(eb(3:6),'enable','off')
         set(tb(3:6),'enable','off')
         set(eb(1:2),'enable','on')
@@ -276,15 +288,17 @@ if nargin == 2
         ylabel(ax(1),' Z (cm)','FontSize',16)
         L=6;
     end
-    
-    
 end
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   All of the code beyond this point, is individual 'if' statements that
+%   check what type of measurement will be performed, then executes the
+%   type of measurement with the given parameters.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 increment = str2double(get(eb(9),'string'));
 
 if nargin == 1 && o1 == 2
-    xyE = 0.208;  %This is the diameter of the probe/2
-    zE = 0.18;    %This is the length from sensitive area to probe tip
+    xyE = 0.208;  %This is half diameter of probe (cm)
+    zE = 0.18;    %This is the length from sensitive area to probe tip on Z(cm)
     check = get(cb(10), 'value');  %Value of 'Removing SidetoSide' (
                                    %less accuracy but will be faster and will not move side to side)
     
@@ -292,6 +306,9 @@ if nargin == 1 && o1 == 2
     start
     %If 'Z' is checked
     if L==3
+        
+        fileIDZ = fopen('Z_1D_MagFieldMeas.txt','wt');
+        fprintf(fileIDZ,'Z,B,Bx,By,Bz\n');
         Zmin = str2double(get(eb(1),'string'));
         Zmax = str2double(get(eb(2),'string'));
         
@@ -304,7 +321,9 @@ if nargin == 1 && o1 == 2
         By = zeros(nz,1);
         Bz = zeros(nz,1);
         B = zeros(nz,1);
+        
         for kk =1:nz
+                
             if check == 1
                 F = FieldM(Npp,s1);
                 Bz(kk)=F(3);
@@ -327,23 +346,29 @@ if nargin == 1 && o1 == 2
             fprintf('Step %d out of %d.\n', step, totalSteps);
             
             step = step + 1;
-               
+            
             movem(s2,3,-increment);
             hold on
             B(kk) = sqrt(Bx(kk).^2 + By(kk).^2 + Bz(kk).^2);
             plot(ax(1),z(1:kk),B(1:kk),'-k','linewidth',2)
             xlabel(ax(1),'Distance from the surface (cm)','FontSize',16)
             ylabel(ax(1),'B_0 (G)','FontSize',16)
+            drawnow
+            fprintf(fileIDZ,'%d,%d,%d,%d,%d\n',((step-1)*increment)+zE,B(kk),Bx(kk),By(kk),Bz(kk));
+
         end
-            save Z_1D_Magnetic_field Bx By Bz B z
+        save Z_1D_Magnetic_field Bx By Bz B z
+        fclose(fileIDZ);
     end
     
         %If 'X' is checked
         if L==1
-
             Xmin = str2double(get(eb(1),'string'));
             Xmax = str2double(get(eb(2),'string'));
-
+            
+            fileIDX = fopen('X_1D_MagFieldMeas.txt','wt');
+            fprintf(fileIDX,'X,B,Bx,By,Bz\n');
+            
             step = 0;
             totalSteps = (Xmax-Xmin)/increment;
             x = Xmin:increment:Xmax;
@@ -353,6 +378,7 @@ if nargin == 1 && o1 == 2
             By = zeros(nx,1);
             Bz = zeros(nx,1);
             B = zeros(nx,1);
+            movem(s2,1,Xmin)
             for kk =1:nx
                 
                 fprintf('Step %d out of %d.\n', step, totalSteps);
@@ -375,32 +401,37 @@ if nargin == 1 && o1 == 2
                     Bx(kk)=F(1);
                     movem(s2,1,-xyE);
                 end
-                movem(s2,1,-increment)
+                movem(s2,1,increment)
                 hold on
                 B(kk) = sqrt(Bx(kk).^2 + By(kk).^2 + Bz(kk).^2);
                 plot(ax(1),x(1:kk),B(1:kk),'-k','linewidth',2)
                 xlabel(ax(1),'X (cm)','FontSize',16)
                 ylabel(ax(1),'B_0 (G)','FontSize',16)
-                
+                drawnow
+                fprintf(fileIDX,'%d,%d,%d,%d,%d\n',(step-1)*increment,B(kk),Bx(kk),By(kk),Bz(kk));
             end
             save X_1D_Magnetic_field Bx By Bz B x
+            fclose(fileIDX);
         end
             
         %If 'Y' is checked
         if L==2
-
             Ymin = str2double(get(eb(1),'string'));
             Ymax = str2double(get(eb(2),'string'));
 
             step = 0;
             totalSteps = (Ymax-Ymin)/increment;
             y = Ymin:increment:Ymax;
-
+            
+            fileIDY = fopen('Y_1D_MagFieldMeas.txt','wt');
+            fprintf(fileIDY,'Y,B,Bx,By,Bz\n');
+            
             ny = length(y);
             Bx = zeros(ny,1);
             By = zeros(ny,1);
             Bz = zeros(ny,1);
             B = zeros(ny,1);
+            movem(s2,2,Ymin)
             for kk =1:ny
                 
                 fprintf('Step %d out of %d.\n', step, totalSteps);
@@ -428,15 +459,16 @@ if nargin == 1 && o1 == 2
                 plot(ax(1),y(1:kk),B(1:kk),'-k','linewidth',2)
                 xlabel(ax(1),'Y (cm)','FontSize',16)
                 ylabel(ax(1),'B_0 (G)','FontSize',16)
-                
-     
+                drawnow
+                fprintf(fileIDY,'%d,%d,%d,%d,%d\n',(step-1)*increment,B(kk),Bx(kk),By(kk),Bz(kk));   
+                disp('asd')
             end
             save Y_1D_Magnetic_field Bx By Bz B y
+            fclose(fileIDY);
         end
         
         %If 'XY' is checked
         if L==4
-
             Xmin = str2double(get(eb(3),'string'));
             Xmax = str2double(get(eb(4),'string'));
             Ymin = str2double(get(eb(5),'string'));
@@ -450,10 +482,25 @@ if nargin == 1 && o1 == 2
             Bz = zeros(nx,ny);
             B = zeros(nx,ny);
             step = 0;
+
+            totalSteps = (Xmax-Xmin)*(Ymax-Ymin)/increment;
+            fileIDXY = fopen('XY_1D_MagFieldMeas.txt','wt');
+            fprintf(fileIDXY,'Y columns by X rows\n\n');
             
+            %This will write the XY data values into the text file.
+            fprintf(fileIDXY,'X Values:');
+            for xx = 0:(nx-1)
+                fprintf(fileIDXY,'%d,',(Xmin+(xx*increment)));
+            end
+            fprintf(fileIDXY,'\n\n');
+            
+            fprintf(fileIDXY,'Y Values:');
+            for yy = 0:(ny-1)
+                fprintf(fileIDXY,'%d,',(Ymin+(yy*increment)));
+            end
+            fprintf(fileIDXY,'\n\n');
             
             for xx =1:nx
-           
                 
                 if xx == 1
                     movem(s2,2,Ymin);
@@ -480,24 +527,26 @@ if nargin == 1 && o1 == 2
                         Bx(xx,yy)=F(1);
                         movem(s2,1,-xyE);
                     end
-                    %This isnt working
-                    %incLeft = ((Xmax-Xmin+1)*(Ymax-Ymin))/increment;
-                    %fprintf('Step %d out of %d. \n', step, incLeft)
+
+                    fprintf('Step %d out of %d. \n', step, totalSteps)
      
                     step = step+1;
+                    
+                    
                     if yy==ny
                         movem(s2,1,-increment);
                     else
                         movem(s2,2,increment);
                     end
-                    B(xx,yy) = sqrt(Bx(xx,yy).^2 + By(xx,yy).^2 + Bz(xx,yy).^2);                
+                    B(xx,yy) = sqrt(Bx(xx,yy).^2 + By(xx,yy).^2 + Bz(xx,yy).^2); 
+                    fprintf(fileIDXY,'%d,',B(xx,yy));
                 end
-
+                fprintf(fileIDXY,'\n');
 
 
                 if xx>=2
                     cla
-                    [Y X] = meshgrid(y,x);
+                    [Y,X] = meshgrid(y,x);
                     size(Y)
                     size(X)
                     size(B(1:xx,:))
@@ -515,10 +564,11 @@ if nargin == 1 && o1 == 2
             end
 
             save XY_2D_Magnetic_field01 Bx By Bz B y x
+            fclose(fileIDXY);
         end
+        
         %If 'YZ'is checked
         if L==5
-
             Ymin = str2double(get(eb(3),'string'));
             Ymax = str2double(get(eb(4),'string'));
             Zmin = str2double(get(eb(5),'string'));
@@ -534,9 +584,26 @@ if nargin == 1 && o1 == 2
             B = zeros(ny,nz);
             check = get(cb(10), 'value');
             
+            fileIDYZ = fopen('YZ_1D_MagFieldMeas.txt','wt');
+            fprintf(fileIDYZ,'Y columns by Z rows\n\n');
+            
+            fprintf(fileIDYZ,'Y Values:');
+            for yy = 0:(ny-1)
+                fprintf(fileIDYZ,'%d,',(Ymin+(yy*increment)));
+            end
+            fprintf(fileIDYZ,'\n\n');
+            
+            fprintf(fileIDYZ,'Z Values:');
+            for zz = 0:(nz-1)
+                fprintf(fileIDYZ,'%d,',(Zmin+(zz*increment)));
+            end
+            fprintf(fileIDYZ,'\n\n');
+            
+            
             for kk =1:ny
                 if kk == 1
                     movem(s2,3,Zmin);
+                    movem(s2,2,Ymax);
                 else
                     movem(s2,3,-(Zmax-Zmin));
                 end
@@ -565,22 +632,24 @@ if nargin == 1 && o1 == 2
                     else
                         movem(s2,3,increment);
                     end
-                    B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);                
+                    B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);
+                    fprintf(fileIDYZ,'%d,',B(kk,ii));
                 end
-
+                fprintf(fileIDYZ,'\n');
 
 
                 if kk>=2
                     cla
-                    [Y,Z] = meshgrid(y,z);
-                    size(Z)
+                    [Z,Y] = meshgrid(z,y);
                     size(Y)
+                    size(Z)
                     size(B(1:kk,:))
 
                     contour(Z,Y,B,100)
+                    title('Magnetic Field B_o')
                     xlabel(ax(1),'Y (cm)','FontSize',16)
                     ylabel(ax(1),'Z (cm)','FontSize',16)
-                    
+                    drawnow
                 end
                 if kk==ny
                     movem(s2,3,-Zmax);
@@ -589,7 +658,9 @@ if nargin == 1 && o1 == 2
             end
 
             save YZ_2D_Magnetic_field Bx By Bz B z y
+            fclose(fileIDYZ);
         end
+        
         %If 'ZX' is checked
         if L==6
             
@@ -606,10 +677,28 @@ if nargin == 1 && o1 == 2
             By = zeros(nz,nx);
             Bz = zeros(nz,nx);
             B = zeros(nz,nx);
+            check = get(cb(10), 'value');
+            
+            fileIDZX = fopen('ZX_1D_MagFieldMeas.txt','wt');
+            fprintf(fileIDZX,'Y columns by Z rows\n\n');
+            
+            fprintf(fileIDZX,'Y Values:');
+            for zz = 0:(nz-1)
+                fprintf(fileIDZX,'%d,',(Zmin+(zz*increment)));
+            end
+            fprintf(fileIDZX,'\n\n');
+            
+            fprintf(fileIDZX,'Z Values:');
+            for xx = 0:(nx-1)
+                fprintf(fileIDZX,'%d,',(Xmin+(xx*increment)));
+            end
+            fprintf(fileIDZX,'\n\n');
 
+            
             for kk =1:nz
                 if kk == 1
                     movem(s2,1,Xmin);
+                    movem(s2,3,Zmax);
                 else
                     movem(s2,1,-(Xmax-Xmin));
                 end
@@ -636,12 +725,14 @@ if nargin == 1 && o1 == 2
                     else
                         movem(s2,1,increment);
                     end
-                    B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);                
+                    B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);  
+                    fprintf(fileIDZX,'%d,',B(kk,ii));
                 end
+                fprintf(fileIDZX,'\n');
                 
                 if kk>=2
                     cla
-                    [X Z] = meshgrid(x,z);
+                    [X,Z] = meshgrid(x,z);
                     size(X)
                     size(Z)
                     size(B(1:kk,:))
@@ -656,6 +747,8 @@ if nargin == 1 && o1 == 2
                 end
             end
             save ZX_2D_Magnetic_field Bx By Bz B x z
+            fclose(fileIDZX);
+            
         end
     stop
 end
@@ -663,6 +756,10 @@ end
 
 if o1==4 && o2==4
     start
+    xyE = 0.208;  %This is the diameter of the probe/2
+    zE = 0.18;    %This is the length from sensitive area to probe tip
+    check = get(cb(10), 'value');  %Value of 'Removing SidetoSide' (
+                                   %less accuracy but will be faster and will not move side to side)
     Npp = str2double(get(eb(8),'string'));
     Xmin = str2double(get(eb(14),'string'));
     Xmax = str2double(get(eb(15),'string'));
@@ -677,6 +774,7 @@ if o1==4 && o2==4
             x = Xmin:increment:Xmax;
             y = Ymin:increment:Ymax;
             z = Zmin:increment:Zmax;
+            z=z+zE;
             nx = length(x);
             ny = length(y);
             nz = length(z);
@@ -685,9 +783,9 @@ if o1==4 && o2==4
             Bz = zeros(nx,ny,nz);
             B = zeros(nx,ny,nz);
             step = 0;
-            recallMid = 1;         
+            recallMid = 1;
             for zz = 1:nz
-
+            
                 
                 for xx =1:nx
                     if recallMid == 1
@@ -704,14 +802,14 @@ if o1==4 && o2==4
                             Bx(xx,yy,zz)=F(1);
                         else
                             F = FieldM(Npp,s1);
-                            Bz(kk,ii)=F(3);
+                            Bz(xx,yy,zz)=F(3);
                             movem(s2,2,xyE);
                             F = FieldM(Npp,s1);
-                            By(kk,ii)=F(2);
+                            By(xx,yy,zz)=F(2);
                             movem(s2,2,-xyE);
                             movem(s2,1,xyE);
                             F = FieldM(Npp,s1);
-                            Bx(kk,ii)=F(1);
+                            Bx(xx,yy,zz)=F(1);
                             movem(s2,1,-xyE);
                         end
 
@@ -722,42 +820,18 @@ if o1==4 && o2==4
                         elseif xx~=nx
                             movem(s2,2,increment);
                         end
-                        if xx==nx
+                        if (xx-1)==nx
                             break;
-                        end
-                        
-%                         B(:,:,zz) = sqrt(Bx(:,:,zz)^2 + By(:,:,zz)^2 + Bz(:,:,zz)^2);                
+                        end          
                     end
-
-
-
-%                     if kk>=3
-%                         cla
-%                         [Y X] = meshgrid(y,x(1:kk));
-%                         size(Y)
-%                         size(X)
-%                         size(B(1:kk,:))
-% 
-%                         contour(Y,X,B(1:kk,:),100)
-%                         xlabel(ax(1),'X (cm)','FontSize',16)
-%                         ylabel(ax(1),'Y (cm)','FontSize',16)
-% 
-%                     end
-    %                 if kk==ny
-    %                     movem(s2,2,-Ymax);
-    %                 end
-
                 end
                 B(:,:,zz) = sqrt(Bx(:,:,zz).^2 + By(:,:,zz).^2 + Bz(:,:,zz).^2);
                 
-
                 movem(s2,1,-(Xmax-Xmin));
                 movem(s2,3,-increment);
-                
+  
             end
-            
-
-            save XY_2D_Magnetic_field01 Bx By Bz B y x
+            save 3D_Magnetic_field01 Bx By Bz B y x
             stop
 end
 
