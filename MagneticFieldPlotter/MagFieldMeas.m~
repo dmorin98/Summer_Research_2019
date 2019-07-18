@@ -3,12 +3,10 @@
 %   LakeShore Gaussmeter, and Velmex stepping motors.
 %   
 %   This was last updated July 15th 2019 by Devin Morin
-%   Partial UI written by Andreas
-%   Logic and partia UI written by Devin Morin
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 function MagFieldMeas(o1,o2)
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -853,3 +851,17 @@ if o1==4 && o2==4
             save 3D_Magnetic_field01 Bx By Bz B y x
             stop
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+

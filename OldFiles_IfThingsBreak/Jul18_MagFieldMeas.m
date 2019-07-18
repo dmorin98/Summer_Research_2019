@@ -10,7 +10,6 @@
 function MagFieldMeas(o1,o2)
 
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %   The program is broken up into two main parts. The first part is the UI
 %   elements, which are contained in one function. The second part is the
@@ -853,3 +852,17 @@ if o1==4 && o2==4
             save 3D_Magnetic_field01 Bx By Bz B y x
             stop
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
