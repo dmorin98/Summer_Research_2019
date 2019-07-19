@@ -10,9 +10,9 @@
 
 **Also, ensure that the probe tip will not hit the sample while performing a measurement.**
 
-<body>
 
-# Contents
+
+## Contents
 
 1. UI Elements
 2. How to Measure
@@ -101,6 +101,14 @@ If measurements are configured to go beyond the active area of the system (activ
 
 https://www.velmex.com/Downloads/User_Manuals/vxm_user_manl.pdf
 
+## Velmex Stepper Motor Website
+
+https://www.velmex.com/Products/Controls/VXM_Controller.html
+
+## Velmex Driver Install Guides
+
+https://www.ftdichip.com/Support/Documents/InstallGuides.htm
+
 ## Lakeshore 460 Gaussmeter Specifications
 
 http://www.sal.wisc.edu/whirc/archive/public/datasheets/lakeshore/460.pdf
@@ -109,5 +117,3 @@ http://www.sal.wisc.edu/whirc/archive/public/datasheets/lakeshore/460.pdf
 
 http://www.sal.wisc.edu/whirc/archive/public/datasheets/lakeshore/460_Manual.pdf
 
-
-</body>

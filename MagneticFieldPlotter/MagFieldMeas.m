@@ -146,7 +146,7 @@ if nargin ==0
         'normalized','Position',[0.01 0.247 0.25 .09 ]);
     
     tb(10) = uicontrol('parent',hp(5),'Style', 'text','units','normalized',...
-        'String','Increment(cm)','Position',[0 0.7 0.4 .4],'fontsize',13,'Callback','');
+        'String','Increment(cm)','Position',[0 0.6 0.4 .4],'fontsize',13,'Callback','');
     eb(9) = uicontrol('parent',hp(5),'Style', 'edit','units','normalized',...
         'String','0.05','Position',[0.07 .2 0.2 .4],'value',1,'fontsize',13,'Callback','');
     cb(10) = uicontrol('parent',hp(5),'Style', 'check','units','normalized',...
@@ -685,8 +685,8 @@ if nargin == 1 && o1 == 2
             Bz = zeros(nz,nx);
             B = zeros(nz,nx);
             check = get(cb(10), 'value');
-            moveAfter=xyE-increment; %This is a way of optimizating a key movement in the side to side motion
-                                     %Check the use in code later on
+            moveAfter = increment-xyE;
+            
             
             fileIDZX = fopen('ZX_2D_MagFieldMeas.txt','wt');
             fprintf(fileIDZX,'Y columns by Z rows\n\n');
@@ -728,20 +728,25 @@ if nargin == 1 && o1 == 2
                         movem(s2,1,xyE);
                         F = FieldM(Npp,s1);
                         Bx(kk,ii)=F(1);
-                        %movem(s2,1,-xyE); %Normally this would occur
-                        %instead of the second line
-                        movemm(s2,1,moveAfter); %This line will get rid of the back and forth motion
-                                                %that is honestly
-                                                %pointless. Having this
-                                                %will simply move it in the
-                                                %direction by the increment
-                                                %size by doing a quick
-                                                %calculation of
-                                                %xyE-increment
-                    end
+                        
+                        %This will correct for backlash
+                        %0.0127cm is roughly the backlash length
+                        
+                        if (moveAfter > -0.0127 && moveAfter <= 0)
+                            %Do the normal forward
+                            movem(s2,1,moveAfter);
+                        else
+                            %Go back and then increment
+                            movem(s2,1,-xyE);
+                            movem(s2,1,increment);
+                        end
+                        
+                        
+          
+                   end
                     if ii==nx
                         movem(s2,3,-increment);
-                    else
+                    %else
                         %movem(s2,1,increment);
                     end
                     B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);  
@@ -772,6 +777,7 @@ if nargin == 1 && o1 == 2
     stop
 end
 
+%3D Measurement Logic Section
 
 if o1==4 && o2==4
     start
