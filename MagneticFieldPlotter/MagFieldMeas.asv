@@ -728,22 +728,20 @@ if nargin == 1 && o1 == 2
                         movem(s2,1,xyE);
                         F = FieldM(Npp,s1);
                         Bx(kk,ii)=F(1);
-                        
                         %This will correct for backlash
                         %0.0127cm is roughly the backlash length
                         
-                        if (abs(moveAfter) > 0.0127)
+                        if (moveAfter < -0.0127 && moveAfter >= 0 || moveAfter >=0)
                             %Do the normal forward
                             movem(s2,1,moveAfter);
                         else
                             %Go back and then increment
                             movem(s2,1,-xyE);
                             movem(s2,1,increment);
-                        end
+                        end     
                         
-                        
-          
-                   end
+                    end
+                end
                     if ii==nx
                         movem(s2,3,-increment);
                     %else
@@ -751,7 +749,7 @@ if nargin == 1 && o1 == 2
                     end
                     B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);  
                     fprintf(fileIDZX,'%d,',B(kk,ii));
-                end
+            end
                 fprintf(fileIDZX,'\n');
                 
                 if kk>=2
@@ -777,6 +775,7 @@ if nargin == 1 && o1 == 2
     stop
 end
 
+%3D Measurement Logic Section
 
 if o1==4 && o2==4
     start

@@ -8,6 +8,11 @@
 ## **WARNING**: 
 **Careful when moving the probe as to not damage the probe tip. It's recommended that the sample is not in the velmex active area while making some of the larger jog movements to center the probe.**
 
+
+![image](active.png)
+    
+    This image describes the active area of the Velmex system. The active area is the region that the probe can freely move.
+
 **Also, ensure that the probe tip will not hit the sample while performing a measurement.**
 
 
@@ -25,10 +30,10 @@
 ## UI Elements
 ****
 
-![image](image.png)
+![image](program.png)
 
 
-    The above image is the MagFeildMeas.m program. This is used to measure magnetic field in 1D, along either X,Y, or Z; 2D either XY, YZ,  or ZX; in 3D. All of which have configurable bounds, increment sizes, and number of measurements to average per data point.
+    The above image is the MagFeildMeas.m program. This is used to measure magnetic field in 1D, along either X,Y, or Z; 2D either XY, YZ,  or ZX; or in 3D. All of these measurements have configurable bounds, increment sizes, and number of measurements to average per data point.
 
 Firstly, the program is broken up into two main sections: a measurement column, and plot column. To the left, all data associated with taking the measurement, such as increment size, number of points to average, and ranges for axes will be inputted. The large white box to the right is a graph of the measurements. Here, only the 1D measurements are plotted live, and the 2D measurements plotted after a couple passes of the probe.
 
@@ -42,9 +47,17 @@ Finally, the '**Probe**' tab will contain the increment size, and a checkbox for
 
 ### **Describing the 'SideToSide' element**
 
-In the case where the 'SideToSide' box is left unchecked, the probe will move in such a way as to expose the direct sensitive side to the center of the probe area, and take a measurement. Since the exact sensitive area of the probe tip is only on two sides of the square tipped probe, the motion will move to one side by exactly one half of the probe tip diameter, then back to it's original position. Then, it will move in such a direction as to expose the other side of the sensitive area, and take a measurement. Once this is done, it will average both measurements to give the data point for the position. 
+In the case where the 'Remove SideToSide' box is left unchecked, the probe will move in a back and forth motion along X and Y in order to increase accuracy. Compared to having the box checked, the back and forth motion will greatly increase the total measurement time. 
 
-    Tip: Disabling 'SideToSide' may allow for the probe tip to take measurements in tighter spots, and will greatly decrease acquisition times, at the expense of accuracy.
+![image](probetip.png)
+
+    Tip: Enabling 'Remove SideToSide' may allow for the probe tip to take measurements in tighter spots, and will greatly decrease acquisition times, at the expense of accuracy.
+
+Since Bx, By, and Bz are each measurement in different locations on the probe tip, in order to allow for all measurements to be taken at the same point in space, the probe will have to move the sensitive area for X towards the center (where the Bz measurement would be taken), then move the By sensitive area to the center. Once all three magnetic field componenets are measured, the probe will move to it's next positon given the increment size.
+
+The sensitive regions for Bx, and By are clearly visible on the Lakeshore Gaussmeter probe tip. The Bx component is labeled with an 'x' on the metalic sensitive region, and the By component is labeled with 'y'.
+
+Comparatively, if the 'Remove SideToSide' box was checked, then the probe would take a measurement of Bx, By, and Bz without moving the probe tip. This means that the only correct value is Bz. Depending on what a measurement is being taken, one axis will be correct, but shifted by 0.208cm, and the other axis will be completely incorrect. This means that magnitude of B will be incorrect, and have magnetic field components that are all incorrect in different ways.
 
 
 <div style="page-break-after: always;"></div>
@@ -52,13 +65,13 @@ In the case where the 'SideToSide' box is left unchecked, the probe will move in
 
 ## How to Measure
 ****
-This section will describe how to take a measurement of a sample in the Z direction, with the probes initial point starting directly above the sample. 
+This section will describe how to take a measurement of a sample in the Z direction, with the probe's initial point starting directly above the sample. 
 
 To take a measurement, place the sample underneath the probe tip in the Velmex system. If the probe is off center, realign it by selecting either X, Y, or Z in the axis bar, in the 'Data' tab. Then, insert the amount the probe tip should move by, under 'Move(cm)', and select the 'Move' button. It would be wise to remove the sample in the Velmex system before realigning the probe, as to avoid damaging the probe if you overshoot the target area. Once, X and Y axes are roughly aligned with the probe tip (and Z is corrected if the sample is too large), slowly decrease the height of the probe tip by moving the Z axis. Be careful as to not overshoot the target area as this could damage the probe tip. 
 
-    Tip: According to the 'Velmex Motor Controller Manual', the E01 stepping motor can make an increment of 0.00025 inches, so the step size can be quite small in order to get as close to the sample as possible.
+    Tip: According to the 'Velmex Motor Controller Manual', the E01 stepping motor can make an increment of 0.000635cm, so the step size can be quite small in order to get as close to the sample as possible.
 
-Once the probe is in place, fill in a suitable value in the 'Data' tab for 'Averages'. Then, since in this case a 1D measurement is being taken, adjust the 'Z-' and 'Z+' values. If a measurement from the initial probe position, to 5cm above was needed, then Z+ should be set to 0, and Z- set to 5. This may seem confusing, but the 'MagFieldMeas' program is set to be the same axis definition set by the Velmex system. As can be seen on the system itself, the axes are defined by labels. The Z axis is vertical, with the negative going upwards, and positive going downwards. 
+Once the probe is in place, fill in a suitable value in the 'Data' tab for 'Averages'. Then, since in this case a 1D measurement is being taken, adjust the 'Z min' and 'Z max' values. If a measurement from the initial probe position, to 5cm above was needed, then Z max should be set to 0, and Z min set to 5. This may seem confusing, but the 'MagFieldMeas' program is set to be the same axis definition set by the Velmex system. As can be seen on the system itself, the axes are defined by labels. The Z axis is vertical, with the negative going upwards, and positive going downwards. In other words, if the probe tip is already touching the surface of a magnet, Z min should be set to the height of the measurement, and Z max set to 0.
 
 Finally, change the increment size in the 'Probe' tab, and select if the 'SideToSide' motion should be disabled. For a detailed explanation behind the 'SideToSide' motion, refer to 1. UI Elements.
 
@@ -73,7 +86,7 @@ Very rarely, the stepper motor will push the system slightly over the limit swit
 
 #### Measurements continously being taken while limit switch is pressed-
 
-If measurements are configured to go beyond the active area of the system (active area is defined by the limit switches), then the program will continously take measurements while the probe rests in the same position. Ideally, the system will throw an exception and stop taking measurements once any one of the limit switches is pressed. However, it seems as though the limit switches only communicate to the stepper motor. This means that there is no way to send a signal from the stepper motor to the computers communication port and break the loop. One way around this problem may be to add a 'try' statement to stop the motor in the middle of the loop. If the stop statement throws an exception, then the limit switch must have been activated during the move statement. If the 'try' statement throws an exception, it should catch a 'break;', and display an error message to terminate the acquisition. 
+If measurements are configured to go beyond the active area of the system (active area is defined by the limit switches), then the program will continously take measurements while the probe rests in the same position. Ideally, the system will throw an exception and stop taking measurements once any one of the limit switches is pressed. However, it seems as though the limit switches only communicate to the stepper motor. This means that there is no way to send a signal from the stepper motor to the computer's communication port and break the loop. One way around this problem may be to add a 'try' statement to stop the motor in the middle of the loop. If the stop statement throws an exception, then the limit switch must have been activated during the move statement. If the 'try' statement throws an exception, it should catch a 'break;', and display an error message to terminate the acquisition. 
 
 <div style="page-break-after: always;"></div>
 
@@ -85,9 +98,9 @@ If measurements are configured to go beyond the active area of the system (activ
     The above image is a plot of a BA11-3 magnet, with a probe increment of 0.02cm. This plot shows magnitude of magnetic field as the probe tip moves upwards along the Z axis. The probe tip started directly on top of the magnet, and moved to a distance of 6cm. The horizontal data is shifted by the distance from the probe tip, to the sensitive area. (As defined in the manual for this given probe, the tip to sensitive area is about 0.18cm). Three measurements were averaged per data point in order to reduce error.
 
 
-![image](BA11-3_2cm.png)
+![image](SA3.svg)
 
-    The above image is a plot of a BA11-3 magnet, with a probe increment of 0.2cm. This plot shows the Bz field in the ZX plane, at a height of 2cm above the magnet. As seen in the image, the Bz component of the plotters frame of reference is very large, and moves towards the right, then down into the page. 
+    The above image is a plot of the SA3 magnet, with an increment size of 0.02cm. Three measurements are taken per data point, and averaged. It can be easily seen that there exists a constant gradient from roughly 1.5cm to 2.5cm.
 
 
 

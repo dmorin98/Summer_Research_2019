@@ -37,14 +37,14 @@ if nargin ==0
         'String','Z','Position',[4/5 .5 1/5 .6],'value',1,'fontsize',13,'Callback','MagFieldMeas(1,3)');
     
     tb(1) = uicontrol('parent',hp(1),'Style', 'text','units','normalized',...
-        'String','Z+','Position',[0 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
+        'String','Z max','Position',[2/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
     tb(2) = uicontrol('parent',hp(1),'Style', 'text','units','normalized',...
-        'String','Z-','Position',[2/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
+        'String','Z min','Position',[0 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
     
     eb(1) = uicontrol('parent',hp(1),'Style', 'edit','units','normalized',...
-        'String','0','Position',[1/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
+        'String','0','Position',[3/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
     eb(2) = uicontrol('parent',hp(1),'Style', 'edit','units','normalized',...
-        'String','5','Position',[3/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
+        'String','5','Position',[1/4 .2 1/5 .4],'value',1,'fontsize',13,'Callback','');
     %% 2D Measurement UI
     hp(2)= uipanel('Title','2D Measurement','FontSize',12,'units',...
         'normalized','Position',[0.01 0.585 1/4 .15]);
@@ -75,20 +75,18 @@ if nargin ==0
     eb(6) = uicontrol('parent',hp(2),'Style', 'edit','units','normalized',...
         'String','5','Position',[3/4 0.05 1/5 .2],'value',1,'fontsize',13,'Callback','');
     %% Data UI
-    hp(3)= uipanel('Title','Data','FontSize',12,'units',...
+    hp(3)= uipanel('Title','Manual Movement','FontSize',12,'units',...
         'normalized','Position',[0.01 0.835 1/4 .16 ]);
     
     tb(7) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
-        'String','Move (cm)','Position',[0 0.8 1/3 .2],'fontsize',13,'Callback','');
-    tb(8) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
-        'String','Averages','Position',[1/3 .8 1/3 .2],'fontsize',13,'Callback','');
+        'String','Move (cm)','Position',[0.15 0.8 1/3 .2],'fontsize',13,'Callback','');
+    %tb(8) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
+        %'String','Averages','Position',[1/3 .8 1/3 .2],'fontsize',13,'Callback','');
     tb(9) = uicontrol('parent',hp(3),'Style', 'text','units','normalized',...
         'String','Axis','Position',[2/3 .8 1/3 .2],'fontsize',13,'Callback','');
     
     eb(7) = uicontrol('parent',hp(3),'Style', 'edit','units','normalized',...
-        'String','0.1','Position',[0.05 .55 1/5 0.2],'value',1,'fontsize',13,'Callback','');
-    eb(8) = uicontrol('parent',hp(3),'Style', 'edit','units','normalized',...
-        'String','1','Position',[0.4 .55 1/5 .2],'value',1,'fontsize',13,'Callback','');
+        'String','0.1','Position',[0.21 .55 1/5 0.2],'value',1,'fontsize',13,'Callback','');
     
     
     cb(7) = uicontrol('parent',hp(3),'Style', 'check','units','normalized',...
@@ -143,14 +141,19 @@ if nargin ==0
     
     %% Increment Panel UI
     hp(5)= uipanel('Title','Probe','FontSize',12,'units',...
-        'normalized','Position',[0.01 0.247 0.25 .09 ]);
+        'normalized','Position',[0.01 0.225 0.25 .15 ]);
     
     tb(10) = uicontrol('parent',hp(5),'Style', 'text','units','normalized',...
         'String','Increment(cm)','Position',[0 0.6 0.4 .4],'fontsize',13,'Callback','');
     eb(9) = uicontrol('parent',hp(5),'Style', 'edit','units','normalized',...
-        'String','0.05','Position',[0.07 .2 0.2 .4],'value',1,'fontsize',13,'Callback','');
+        'String','0.05','Position',[0.07 0.5 0.2 .3],'value',1,'fontsize',13,'Callback','');
     cb(10) = uicontrol('parent',hp(5),'Style', 'check','units','normalized',...
-        'String','Remove SideToSide','Position',[0.4 0.4 0.6 .3],'value',1,'fontsize',13);
+        'String','Remove SideToSide','Position',[0.1 0.1 0.6 .3],'value',0,'fontsize',13);
+    
+    tb(8) = uicontrol('parent',hp(5),'Style', 'text','units','normalized',...
+        'String','Averages','Position',[1/3 .8 1/3 .2],'fontsize',13,'Callback','');
+    eb(8) = uicontrol('parent',hp(5),'Style', 'edit','units','normalized',...
+        'String','1','Position',[0.4 .55 1/5 .2],'value',1,'fontsize',13,'Callback','');
     
 
 
@@ -238,8 +241,8 @@ if nargin == 2
         set(cb(1:2),'value',0)
         set(cb(3),'value',1)
         set(cb(4:6),'value',0)
-        set(tb(1),'String','Z-');
-        set(tb(2),'String','Z+')
+        set(tb(1),'String','Z min');
+        set(tb(2),'String','Z max')
         set(eb(3:6),'enable','off')
         set(tb(3:6),'enable','off')
         set(eb(1:2),'enable','on')
@@ -710,8 +713,9 @@ if nargin == 1 && o1 == 2
                     movem(s2,3,Zmax);
                 else
                     movem(s2,1,-(Xmax-Xmin));
+                    disp('Moving backwards');
                 end
-                for ii = 1:nx
+                for ii = 1:nx-1
                     if check == 1
                         F = FieldM(Npp,s1);
                         Bz(kk,ii)=F(3);
@@ -732,23 +736,22 @@ if nargin == 1 && o1 == 2
                         %This will correct for backlash
                         %0.0127cm is roughly the backlash length
                         
-                        if (moveAfter > -0.0127 && moveAfter <= 0)
+                        if (moveAfter < -0.0127 && moveAfter >= 0 || moveAfter >=0)
                             %Do the normal forward
                             movem(s2,1,moveAfter);
                         else
                             %Go back and then increment
                             movem(s2,1,-xyE);
                             movem(s2,1,increment);
+                            
                         end
-                        
-                        
-          
                    end
-                    if ii==nx
+                    if ii==nx-1
                         movem(s2,3,-increment);
                     %else
                         %movem(s2,1,increment);
                     end
+                    
                     B(kk,ii) = sqrt(Bx(kk,ii).^2 + By(kk,ii).^2 + Bz(kk,ii).^2);  
                     fprintf(fileIDZX,'%d,',B(kk,ii));
                 end

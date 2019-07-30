@@ -5,7 +5,7 @@ try
     end
 
 
-    s2 = serial('COM1', 'BaudRate', 9600, 'Terminator', 'CR');
+    s2 = serial('COM4', 'BaudRate', 9600, 'Terminator', 'CR');
     fopen(s2);
     %% initialize
     fprintf(s2, 'F');
@@ -32,7 +32,7 @@ try
     display(fscanf(s2)); 
 
 
-    s1 = serial('COM2', 'BaudRate', 9600, 'Terminator', 'CR/LF', 'Parity', 'odd', 'DataBits', 7);
+    s1 = serial('COM5', 'BaudRate', 9600, 'Terminator', 'CR/LF', 'Parity', 'odd', 'DataBits', 7);
     fopen(s1);
     %% initialize
     fprintf(s1, '*IDN?'); 
