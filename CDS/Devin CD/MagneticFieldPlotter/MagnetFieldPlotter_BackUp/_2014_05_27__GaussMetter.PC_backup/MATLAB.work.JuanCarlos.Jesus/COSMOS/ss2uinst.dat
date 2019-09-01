@@ -1,0 +1,121 @@
+CreateDir::C:\Program Files\COSMOS
+CreateFile::C:\Program Files\COSMOS\ss2uinst.dat
+CreateFile::C:\Program Files\COSMOS\Post Installation Instructions.exe
+CreateFile::C:\Program Files\COSMOS\COSMOS.exe
+CreateDir::C:\Program Files\COSMOS\Config\
+CreateFile::C:\Program Files\COSMOS\Config\All Possible Motor Configs.ini
+CreateDir::C:\Program Files\COSMOS\Documentation\Cable Connections\
+CreateFile::C:\Program Files\COSMOS\Documentation\Cable Connections\Cable Connections.pdf
+CreateDir::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Virtual Jog.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\All Possible Motor Configs.ini
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Administrator.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\AutoReverse.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Configuring your VXM.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Help.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Motor Settings Calculator.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Script Editor.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Attached Devices.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Simultaneous Axis Quickmove.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Single Axis Quickmove.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Table of Contents.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Terminal.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Troubleshooting.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\View VXM Programs.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Virtual Jog.html
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\AutoDetect.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Autoformat Code and Comment Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Autoformat Code and Comment.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Autoformat Code Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\AutoReverse Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\AutoReverse.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\COSMOS Password.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\COSMOS Settings.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Analog Input.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Analog Joystick.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Axis.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Digital Joystick.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Limits.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Multifunction User Inputs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Operating Mode.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Output Pulse.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Overtravel Backlash.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Processor.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic Programs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic User Inputs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic User Outputs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Diagnostic.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Did Motor Move Correctly.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Intro.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Keep These Settings.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Manually Set Port.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Motor Settings Calculator.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\OnlineReady Status.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Save to File Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Save to VXM Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Script Editor After Format.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Script Editor Before Format.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Terminal.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Script Editor.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Send Script File to VXM.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Analog Joystick.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Attached Devices.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set by Motor Setting.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Digital Joystick.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Jog Buttons.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Set Thumbwheel Switch.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Setup Axis.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Simultaneous Axis QuickMove Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Simultaneous Axis QuickMove.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Single Axis Quickmove Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Single Axis Quickmove.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Terminal Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Test the Code Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Troubleshoot Limits.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Troubleshoot Multifunction User IO.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Troubleshoot User Inputs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Troubleshoot User Outputs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Typical Limit Settings.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Typical Motor Settings.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\View VXM Programs.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Virtual Jog Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Status Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Run Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Local Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Stop Button.jpg
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Online Button.jpg
+CreateDir::C:\Program Files\COSMOS\Documentation\VXM Users Manual\
+CreateFile::C:\Program Files\COSMOS\Documentation\VXM Users Manual\vxm_user_manl.pdf
+CreateDir::C:\Program Files\COSMOS\Driver\
+CreateFile::C:\Program Files\COSMOS\Driver\Velmex VXM Serial Driver.dll
+CreateDir::C:\Program Files\COSMOS\VXM Programs\
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.10 Move motor 3.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.26 Example 1.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.26 Example 2.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.26 Example 3.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.27 Example 4.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.27 Example 5.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.27 Example 6.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.27 Example 7.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.28 Example 8 (equivalent code).txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.28 Example 8.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.28 Example 9.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.29 Example 10.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.29 Example 10B.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.29 Example 11.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.83 Pick and Place Example 12.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.84 Pick and Place Example 13.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.85 Pick and Place Example 14.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.86 Pick and Place Example 15.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.87 Pick and Place Example 16.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\P.9 Move motor 1.txt
+CreateFile::C:\Program Files\COSMOS\VXM Programs\Test Program.txt
+CreateFile::C:\Program Files\COSMOS\Documentation\COSMOS Users Manual\Debug Window.jpg
+CreateFile::C:\Program Files\COSMOS\Driver\Velmex VXM Commands.dll
+CreateRegKey::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Velmex, Inc. COSMOS 2.0
+CreateRegValue::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Velmex, Inc. COSMOS 2.0\DisplayName
+CreateRegValue::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Uninstall\Velmex, Inc. COSMOS 2.0\UninstallString
+CreateDir::C:\WINDOWS\Profiles\admin\Start Menu\Programs\COSMOS\
+CreateFile::C:\WINDOWS\Profiles\admin\Start Menu\Programs\COSMOS\Velmex COSMOS.lnk
+CreateFile::C:\WINDOWS\Profiles\admin\Desktop\Velmex COSMOS.lnk

@@ -1,0 +1,35 @@
+;This Pick and Place example moves X,Y,Z
+;Parts are Picked 5x in 2 rows & Placed at one point
+E
+PM-2		;Program 2 places parts at one location
+I3M400		;Index Z down to part
+U5,P1		;Output 1 on to grab part, pause too
+I3M-400		;Have part, now Index Z up
+IA1M-1000	;Move to place location
+I3M400		;Index Z down to part
+U4		;Let part go
+I3M-400		;Now Index Z up
+
+PM-1		;Program 1 for getting parts in row
+JM-2		;Grab and drop off another part
+I1M800		;Advance to next place location
+L5		;Do 5 places per row
+
+PM-0		;Program 0 is start/setup program
+IA1M-0,IA2M-0	;Make this location zero (Start)
+S1M3000,S2M3000,A1M6,A2M6	;Set speeds & accels
+S3M2000,A3M4	;Set Z speed & accel
+LM0		;Set loop marker, all loops will branch here
+JM1		;jump to program 1 to do row
+IA1M0		;Move back to Home (start of row)
+I2M1200		;move motor 2 over next row
+L2		;Do 2 rows
+IA2M0		;Y home
+
+
+
+
+
+
+
+

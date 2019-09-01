@@ -1,0 +1,10 @@
+;Sample Script for testing
+;VXM Testing with COSMOS
+;Velmex, Inc.
+;01-21-05
+F,		;Control online echo-off
+C,		;Clear previous commands if they exist
+S1M1000,	;Motor 1 speed = 1000 step per second
+I1M400,		;Motor 1 move 400 steps
+;Next line is the run command (no comments are allowed after the run command)
+R

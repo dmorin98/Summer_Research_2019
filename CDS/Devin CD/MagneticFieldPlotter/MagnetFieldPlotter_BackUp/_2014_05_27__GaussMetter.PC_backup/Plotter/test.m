@@ -1,0 +1,2 @@
+fprintf('test');                           
+commandwindow

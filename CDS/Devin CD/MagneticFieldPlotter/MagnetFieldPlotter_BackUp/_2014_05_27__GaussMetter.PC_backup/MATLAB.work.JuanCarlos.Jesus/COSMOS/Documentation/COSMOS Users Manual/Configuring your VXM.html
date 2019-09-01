@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.1.4  (Win32)">
+	<META NAME="CREATED" CONTENT="20050720;18043879">
+	<META NAME="CHANGED" CONTENT="20050725;18000826">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P><BR><BR>
+</P>
+<P><BR><BR>
+</P>
+<P>I.) Setting up your system for the 1<SUP>st</SUP> time</P>
+<OL TYPE=I>
+	<P>The 1<SUP>st</SUP> time that COSMOS is run (typically immediately
+	after install), COSMOS will detect the port and settings to
+	correctly communicate with the VXM. 
+	</P>
+	<P>In order for this option to correctly establish communications,
+	the VXM must be connected and turned on.</P>
+	<P>If the VXM is not connected and powered up at the time COSMOS is
+	scanning, then you can abort the scan and start over by selecting
+	&ldquo;Tools--&gt;Wizard&rdquo;, and the software will again attempt
+	to assist in the setting up of your system.</P>
+</OL>
+<OL TYPE=I START=2>
+	<LI><P><A NAME="Setup via Wizard"></A>Setting up your system via
+	COSMOS wizard</P>
+	<P>To set up your system via the wizard, go to &ldquo;Tools--&gt;Wizard&rdquo;
+	and COSMOS will begin to search your computer for the correct port
+	and settings that the VXM will reply to.</P>
+	<P><A NAME="Auto Detect"></A>A.) Auto-Detect</P>
+	<OL>
+		<P>The Auto-Detect window will appear as seen below and will
+		automatically begin to scan for the port and communication
+		parameters to match the settings in the VXM (typically the Port
+		would be Com1 and the Baudrate would be 9600)</P>
+	</OL>
+</OL>
+<P ALIGN=CENTER><IMG SRC="AutoDetect.jpg" NAME="Graphic1" ALIGN=LEFT WIDTH=364 HEIGHT=129 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P ALIGN=CENTER><BR><BR>
+</P>
+<P>B.) Configuring Axis</P>
+<P>Once that COSMOS has detected the port and settings to
+communicate, it will then walk you through the process of configuring
+each axis to match the motor and the slide (or rotary) system that
+matches that axis</P>
+<P ALIGN=CENTER><IMG SRC="./Setup Axis.jpg" NAME="Graphic2" ALIGN=LEFT WIDTH=369 HEIGHT=293 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P>Typically your settings would be a Vexta motor for smaller motors,
+and Superior for larger motors, but in the case that your motor is
+not one of the typical motors then you can do the following:</P>
+<OL>
+	<LI><P>Press the question mark button for help</P>
+	<LI><P>Open the &ldquo;All Possible Motor Configs.ini&rdquo; file</P>
+	<LI><P>Locate your motor in the list (If your motor is not found in
+	this file then see <A HREF="./.\Motor Settings Calculator.html">Motor
+	Settings Calculator</A> to determine the setting for your motor)</P>
+	<LI><P>In the form for Axis settings, select the &ldquo;Set By:&rdquo;
+	box and choose &ldquo;Motor Setting&rdquo; and then select the motor
+	setting value that you located in the motor listing (Example seen
+	below)</P>
+	<LI><P><IMG SRC="./Set by Motor Setting.jpg" NAME="Graphic3" ALIGN=LEFT WIDTH=363 HEIGHT=283 BORDER=0><BR CLEAR=LEFT>In
+	the limits box, select the type of slide (or rotary) system that you
+	have attached to the axis that you are configuring. (Typically this
+	will be either &ldquo;Velmex Slide&rdquo; or &ldquo;Velmex Rotary
+	Table&rdquo;)</P>
+	<LI><P>To verify you have your settings correct then press the &ldquo;Test
+	Motor&rdquo; button. 
+	</P>
+	<P>a.) In a moment your motor will move 1 revolution positive and 1
+	revolution negative. If your motor moves correctly withought
+	&ldquo;stalling&rdquo; then answer Yes to the messagebox that
+	appears.</P>
+</OL>
+<P ALIGN=LEFT><IMG SRC="./Did Motor Move Correctly.jpg" NAME="Graphic4" ALIGN=LEFT WIDTH=356 HEIGHT=159 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P ALIGN=LEFT>b.) You will then be asked if you wish to keep these
+settings. If you select Yes then COSMOS will save the settings to the
+VXM, if you select No then you will have to set up this axis again
+before the motor will operate properly.</P>
+<P ALIGN=CENTER><IMG SRC="./Keep These Settings.jpg" NAME="Graphic5" ALIGN=LEFT WIDTH=335 HEIGHT=159 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<OL START=7>
+	<LI><P>Repeat this process for all the axis you have attached to the
+	VXM.</P>
+</OL>
+<P><BR><BR>
+</P>
+<OL TYPE=I START=3>
+	<LI><P><A NAME="Setup Manually"></A>Setting up your system manually</P>
+	<P>1.) To set your port manually go to &ldquo;Tools--&gt;Setup
+	Communications&rdquo; and then select either &ldquo;AutoDetect VXM&rdquo;
+	or &ldquo;Manually Set VXM Communications&rdquo;</P>
+</OL>
+<P ALIGN=CENTER><IMG SRC="AutoDetect.jpg" NAME="Graphic6" ALIGN=LEFT WIDTH=364 HEIGHT=129 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P ALIGN=CENTER><A NAME="Manually Set Port"></A><IMG SRC="./Manually Set Port.jpg" NAME="Graphic7" ALIGN=LEFT WIDTH=533 HEIGHT=92 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<OL TYPE=I START=3>
+	<P>2.) If you chose Autodetect then press the &ldquo;Detect VXM&rdquo;
+	button and COSMOS will attempt to detect the Serial Port and
+	Baudrate that the VXM responds to. If you chose to set manually then
+	you will have to correctly choose these settings for yourself.
+	(Typically Serial Port = Com1 and Baudrate = 9600)</P>
+	<LI><P><A NAME="Configure Axis"></A>Configuring Axis</P>
+</OL>
+<P>Once that COSMOS has detected the port and settings to
+communicate, it will then walk you through the process of configuring
+each axis to match the motor and the slide (or rotary) system that
+matches that axis</P>
+<P ALIGN=CENTER><IMG SRC="./Setup Axis.jpg" NAME="Graphic8" ALIGN=LEFT WIDTH=369 HEIGHT=293 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P>Typically your settings would be a Vexta motor for smaller motors,
+and Superior for larger motors, but in the case that your motor is
+not one of the typical motors then you can do the following:</P>
+<OL START=8>
+	<P>1.) Press the question mark button for help</P>
+	<P>2.) Open the &ldquo;All Possible Motor Configs.ini&rdquo; file</P>
+	<P>3.) Locate your motor in the list (If your motor is not found in
+	this file then see <A HREF="./.\Motor Settings Calculator.html">Motor
+	Settings Calculator</A> to determine the setting for your motor)</P>
+	<P>4.) In the form for Axis settings, select the &ldquo;Set By:&rdquo;
+	box and choose &ldquo;Motor Setting&rdquo; and then select the motor
+	setting value that you located in the motor listing (Example seen
+	below)</P>
+	<P><IMG SRC="./Set by Motor Setting.jpg" NAME="Graphic9" ALIGN=LEFT WIDTH=363 HEIGHT=283 BORDER=0><BR CLEAR=LEFT>5.)
+	In the limits box, select the type of slide (or rotary) system that
+	you have attached to the axis that you are configuring. (Typically
+	this will be either &ldquo;Velmex Slide&rdquo; or &ldquo;Velmex
+	Rotary Table&rdquo;)</P>
+	<P>6.) To verify you have your settings correct then press the &ldquo;Test
+	Motor&rdquo; button. 
+	</P>
+	<P>a.) In a moment your motor will move 1 revolution positive and 1
+	revolution negative. If your motor moves correctly withought
+	&ldquo;stalling&rdquo; then answer Yes to the messagebox that
+	appears.</P>
+</OL>
+<P ALIGN=LEFT><IMG SRC="./Did Motor Move Correctly.jpg" NAME="Graphic10" ALIGN=LEFT WIDTH=356 HEIGHT=159 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P ALIGN=LEFT>b.) You will then be asked if you wish to keep these
+settings. If you select Yes then COSMOS will save the settings to the
+VXM, if you select No then you will have to set up this axis again
+before the motor will operate properly.</P>
+<P ALIGN=CENTER><IMG SRC="./Keep These Settings.jpg" NAME="Graphic11" ALIGN=LEFT WIDTH=335 HEIGHT=159 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<OL START=8>
+	<P>7.) Repeat this process for all the axis you have attached to the
+	VXM.</P>
+</OL>
+</BODY>
+</HTML>

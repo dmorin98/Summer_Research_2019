@@ -1,0 +1,522 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 1.1.4  (Win32)">
+	<META NAME="CREATED" CONTENT="20050723;14583862">
+	<META NAME="CHANGED" CONTENT="20050723;15522870">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P><IMG SRC="./Single Axis Quickmove.jpg" NAME="Graphic1" ALIGN=LEFT WIDTH=761 HEIGHT=375 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<P>The single axis quickmove allows the user to quickly move an axis
+a desired distance at a given rate of speed. This tool also allows
+for using your own units (such as inches, millimeters, revs, degrees,
+or any sort of units you wish). All you need to do is enter the
+distance per step multiplier and the units you wish to use. Then
+COSMOS will take this value into account when sending commands to the
+VXM for movement.</P>
+<P>Typical Distance per step values can be seen in the chart below:</P>
+<P STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=4><B>Unit
+Conversion for Velmex Positioners</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=3><B>All
+values below are based on the following:</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=3><B>Motor
+= 0.9 degree per full step of the motor = 200 Full steps per
+revolution</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=3><B>VXM
+= Half stepping = 2 (Half-Steps per Full Step)</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=3><B>Results
+= 400 Steps per Revolution</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<TABLE WIDTH=639 BORDER=1 CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=79>
+	<COL WIDTH=125>
+	<COL WIDTH=71>
+	<COL WIDTH=84>
+	<COL WIDTH=220>
+	<THEAD>
+		<TR VALIGN=TOP>
+			<TH WIDTH=79>
+				<P>Leadscrew</P>
+			</TH>
+			<TH WIDTH=125>
+				<P>Distance per Step</P>
+			</TH>
+			<TH WIDTH=71>
+				<P><BR>
+				</P>
+			</TH>
+			<TH WIDTH=84>
+				<P>Rotary Table or Gear Ratio</P>
+			</TH>
+			<TH WIDTH=220>
+				<P>Distance per Step</P>
+			</TH>
+		</TR>
+	</THEAD>
+	<TBODY>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>C</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0000625
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>B4872</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0125
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>P40</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0000625
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>72 to
+				1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0125
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>E25</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0000625
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>B</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0001250
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>B4836
+				</FONT></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0250
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>P20</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0001250
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>36 to
+				1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0250
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>E50</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0001250
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>W1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0002500
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>B4818</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0500
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>P10</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0002500
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>18 to
+				1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0500
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>E01</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0002500
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>W2</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0005000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>B5990</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0100
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>P5</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0005000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>90 to
+				1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0100
+				degree</FONT></FONT></P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>E02</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0005000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>W4</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0010000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>P2.5</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0010000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>E04</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0010000
+				inch</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>K1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0025
+				mm </FONT></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>Q1</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0025
+				mm </FONT></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>M01</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0025
+				mm </FONT></FONT>
+				</P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>K2</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0050
+				mm</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>Q2</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0050
+				mm</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+		<TR VALIGN=TOP>
+			<TD WIDTH=79>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>M02</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=125>
+				<P ALIGN=LEFT><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>0.0050
+				mm</FONT></FONT></P>
+			</TD>
+			<TD WIDTH=71>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=84>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+			<TD WIDTH=220>
+				<P ALIGN=LEFT><BR>
+				</P>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT-Bold, sans-serif"><FONT SIZE=3><B>Based
+on the calculations above:</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT, sans-serif"><FONT SIZE=1><FONT SIZE=3>1
+Motor rev = 400 steps</FONT></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>Linear
+Speed = Advance per step x steps per second</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3>Rotary
+Speed = Advance per step x steps per second</FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT FACE="ArialMT, sans-serif"><FONT SIZE=3><B>Steps
+per second &divide; 400 = rev/sec</B></FONT></FONT></P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>

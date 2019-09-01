@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>PlotterManual.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="magnetic-field-plotter-manual">Magnetic Field Plotter Manual</h1>
+<h5 id="by-devin-morin">by Devin Morin</h5>
+<h5 id="updated-july-2019">updated July 2019</h5>
+<div style="page-break-after: always;"></div>
+<h2 id="warning"><strong>WARNING</strong>:</h2>
+<p><strong>Careful when moving the probe as to not damage the probe tip. It's recommended that the sample is not in the velmex active area while making some of the larger jog movements to center the probe.</strong></p>
+<p><img src="active.png" alt="image"></p>
+<pre><code>This image describes the active area of the Velmex system. The active area is the region that the probe can freely move.
+</code></pre>
+<p><strong>Also, ensure that the probe tip will not hit the sample while performing a measurement.</strong></p>
+<h2 id="contents">Contents</h2>
+<ol>
+<li>UI Elements</li>
+<li>How to Measure</li>
+<li>Further Improvements</li>
+<li>Data Comparisons</li>
+<li>Resources</li>
+</ol>
+<div style="page-break-after: always;"></div>
+<h2 id="ui-elements">UI Elements</h2>
+<hr>
+<p><img src="program.png" alt="image"></p>
+<pre><code>The above image is the MagFeildMeas.m program. This is used to measure magnetic field in 1D, along either X,Y, or Z; 2D either XY, YZ,  or ZX; or in 3D. All of these measurements have configurable bounds, increment sizes, and number of measurements to average per data point.
+</code></pre>
+<p>Firstly, the program is broken up into two main sections: a measurement column, and plot column. To the left, all data associated with taking the measurement, such as increment size, number of points to average, and ranges for axes will be inputted. The large white box to the right is a graph of the measurements. Here, only the 1D measurements are plotted live, and the 2D measurements plotted after a couple passes of the probe.</p>
+<p>In the top left, the '<strong>Data</strong>' tab will store the number of measurements to collect and average per data point. The 'Axis' column has three checkboxes which allow for either X,Y, or Z to be selected. Selecting an axis, and pressing the 'Move' button, will move the probe by an amount that is described in the box under 'Move(cm)'. For example, if the Z axis box is checked, and the move amount is set to 1, the probe will move 1cm in the positive Z direction. It's important to know that the positive Z direction points towards the floor. Check the labels on the Velmex system to find the directions of the axes.</p>
+<p>Below the 'Data' tab, is the '<strong>1D Measurement</strong>' tab, which will hold some information needed to take a 1D measurement. Selecting either X,Y, or Z will change the measurement to occur in such an axis. To change the bounds of the measurement, fill in values for 'Z+' (the max position of the probe), and 'Z-' (the min position of the probe). For example, checking the 'Z' axis box, and setting the 'Z-' to -1, and 'Z+' to 5 will make the probe go down 1cm, and measure all the way up to +5cm above it's original position.</p>
+<p>In the '<strong>2D Measurement</strong>' tab, selecting either XY, YZ, or ZX will determine the plane that the measurements will take place. As before, setting the min and max position for the given axes will determine the range of the probe. Keep in mind, that compared to 1D measurements, 2D measurements will take significantly longer.</p>
+<p>Finally, the '<strong>Probe</strong>' tab will contain the increment size, and a checkbox for 'Remove SideToSide'. The increment size will determine how large of a step between measurements the probe will take. This applies to every axis. So, if the increment size is set to 1mm, and a 3D measurement is taken, the probe will take a step of 1mm on the Y axis, until the Y limit is reached. Then, it takes a step of 1mm on the X, and repeats the Y axis again. When the X axis limit is reached, it then either raises/lowers (depending on the limits set on Z) 1mm, and repeats this process until completed.</p>
+<h3 id="describing-the-sidetoside-element"><strong>Describing the 'SideToSide' element</strong></h3>
+<p>In the case where the 'Remove SideToSide' box is left unchecked, the probe will move in a back and forth motion along X and Y in order to increase accuracy. Compared to having the box checked, the back and forth motion will greatly increase the total measurement time.</p>
+<p><img src="probetip.png" alt="image"></p>
+<pre><code>Tip: Enabling 'Remove SideToSide' may allow for the probe tip to take measurements in tighter spots, and will greatly decrease acquisition times, at the expense of accuracy.
+</code></pre>
+<p>Since Bx, By, and Bz are each measurement in different locations on the probe tip, in order to allow for all measurements to be taken at the same point in space, the probe will have to move the sensitive area for X towards the center (where the Bz measurement would be taken), then move the By sensitive area to the center. Once all three magnetic field componenets are measured, the probe will move to it's next positon given the increment size.</p>
+<p>The sensitive regions for Bx, and By are clearly visible on the Lakeshore Gaussmeter probe tip. The Bx component is labeled with an 'x' on the metalic sensitive region, and the By component is labeled with 'y'.</p>
+<p>Comparatively, if the 'Remove SideToSide' box was checked, then the probe would take a measurement of Bx, By, and Bz without moving the probe tip. This means that the only correct value is Bz. Depending on what a measurement is being taken, one axis will be correct, but shifted by 0.208cm, and the other axis will be completely incorrect. This means that magnitude of B will be incorrect, and have magnetic field components that are all incorrect in different ways.</p>
+<div style="page-break-after: always;"></div>
+<h2 id="how-to-measure">How to Measure</h2>
+<hr>
+<p>This section will describe how to take a measurement of a sample in the Z direction, with the probe's initial point starting directly above the sample.</p>
+<p>To take a measurement, place the sample underneath the probe tip in the Velmex system. If the probe is off center, realign it by selecting either X, Y, or Z in the axis bar, in the 'Data' tab. Then, insert the amount the probe tip should move by, under 'Move(cm)', and select the 'Move' button. It would be wise to remove the sample in the Velmex system before realigning the probe, as to avoid damaging the probe if you overshoot the target area. Once, X and Y axes are roughly aligned with the probe tip (and Z is corrected if the sample is too large), slowly decrease the height of the probe tip by moving the Z axis. Be careful as to not overshoot the target area as this could damage the probe tip.</p>
+<pre><code>Tip: According to the 'Velmex Motor Controller Manual', the E01 stepping motor can make an increment of 0.000635cm, so the step size can be quite small in order to get as close to the sample as possible.
+</code></pre>
+<p>Once the probe is in place, fill in a suitable value in the 'Data' tab for 'Averages'. Then, since in this case a 1D measurement is being taken, adjust the 'Z min' and 'Z max' values. If a measurement from the initial probe position, to 5cm above was needed, then Z max should be set to 0, and Z min set to 5. This may seem confusing, but the 'MagFieldMeas' program is set to be the same axis definition set by the Velmex system. As can be seen on the system itself, the axes are defined by labels. The Z axis is vertical, with the negative going upwards, and positive going downwards. In other words, if the probe tip is already touching the surface of a magnet, Z min should be set to the height of the measurement, and Z max set to 0.</p>
+<p>It's important to know that the movement of the probe tip while doing a measurement will move from the maximum position to the minimum position. For example, a 1D Z measurement that has a Z max of 0, and Z min of 5 will take its first measurement at Z max 0, then increment upwards and repeat the process until it has reached a height of 5 cm above its initial position.</p>
+<p>Finally, change the increment size in the 'Probe' tab, and select if the 'SideToSide' motion should be disabled. For a detailed explanation behind the 'SideToSide' motion, refer to 1. UI Elements.</p>
+<div style="page-break-after: always;"></div>
+<h2 id="further-improvements">Further Improvements</h2>
+<hr>
+<h4 id="limit-switches-sticking">Limit Switches Sticking-</h4>
+<p>Very rarely, the stepper motor will push the system slightly over the limit switches. This means that when the probe is told by the program to move away from the limit switch, it instantly activates the stop for the motor since it has gone too far over the limit switch. One possible fix to this issue, would be to change the jog rate of the system to a lower value. This would allow for the system to come to a stop before overshooting the limit switches. However, this would lead to much longer acquisition times.</p>
+<h4 id="measurements-continously-being-taken-while-limit-switch-is-pressed">Measurements continously being taken while limit switch is pressed-</h4>
+<p>If measurements are configured to go beyond the active area of the system (active area is defined by the limit switches), then the program will continously take measurements while the probe rests in the same position. Ideally, the system will throw an exception and stop taking measurements once any one of the limit switches is pressed. However, it seems as though the limit switches only communicate to the stepper motor. This means that there is no way to send a signal from the stepper motor to the computer's communication port and break the loop. One way around this problem may be to add a 'try' statement to stop the motor in the middle of the loop. If the stop statement throws an exception, then the limit switch must have been activated during the move statement. If the 'try' statement throws an exception, it should catch a 'break;', and display an error message to terminate the acquisition.</p>
+<h4 id="ol-on-lakeshore-gaussmeter-instrument">&quot;OL&quot; on Lakeshore Gaussmeter instrument</h4>
+<p>An overload of the gaussmeter probe will stop any measurements from happening. This can occur if the Lakeshore gaussmeter is unplugged, or in power outtages.</p>
+<p>To remove the &quot;OL&quot; or overload error, the gaussmeter must be set to observe kG, instead of gauss. To do this, simply press the &quot;Select Range&quot; button, and use the arrow buttons to change the range to '30.0kG'. Then, select the axis button that has the overload error (either 'X', 'Y' or 'Z'). If the error exists for more then one axis, repeat this process for all.</p>
+<div style="page-break-after: always;"></div>
+<h2 id="data-comparisons">Data Comparisons</h2>
+<hr>
+<p><img src="BA11-3.png" alt="image"></p>
+<pre><code>The above image is a plot of a BA11-3 magnet, with a probe increment of 0.02cm. This plot shows magnitude of magnetic field as the probe tip moves upwards along the Z axis. The probe tip started directly on top of the magnet, and moved to a distance of 6cm. The horizontal data is shifted by the distance from the probe tip, to the sensitive area. (As defined in the manual for this given probe, the tip to sensitive area is about 0.18cm). Three measurements were averaged per data point in order to reduce error.
+</code></pre>
+<p><img src="SA3.svg" alt="image"></p>
+<pre><code>The above image is a plot of the SA3 magnet, with an increment size of 0.02cm. Three measurements are taken per data point, and averaged. It can be easily seen that there exists a constant gradient from roughly 1.5cm to 2.5cm.
+</code></pre>
+<div style="page-break-after: always;"></div>
+<h2 id="resources">Resources</h2>
+<hr>
+<h2 id="velmex-stepper-motor-controller-manual">Velmex Stepper Motor Controller Manual</h2>
+<p>https://www.velmex.com/Downloads/User_Manuals/vxm_user_manl.pdf</p>
+<h2 id="velmex-stepper-motor-website">Velmex Stepper Motor Website</h2>
+<p>https://www.velmex.com/Products/Controls/VXM_Controller.html</p>
+<h2 id="velmex-driver-install-guides">Velmex Driver Install Guides</h2>
+<p>https://www.ftdichip.com/Support/Documents/InstallGuides.htm</p>
+<h2 id="lakeshore-460-gaussmeter-specifications">Lakeshore 460 Gaussmeter Specifications</h2>
+<p>http://www.sal.wisc.edu/whirc/archive/public/datasheets/lakeshore/460.pdf</p>
+<h2 id="lakeshore-460-user-manual">Lakeshore 460 User Manual</h2>
+<p>http://www.sal.wisc.edu/whirc/archive/public/datasheets/lakeshore/460_Manual.pdf</p>
+
+</body>
+</html>

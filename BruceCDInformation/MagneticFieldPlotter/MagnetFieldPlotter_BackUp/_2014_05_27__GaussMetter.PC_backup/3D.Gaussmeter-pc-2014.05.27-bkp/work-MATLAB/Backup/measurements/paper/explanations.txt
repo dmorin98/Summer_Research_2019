@@ -1,0 +1,45 @@
+GROUSE_II_new_pole_XY_4x2.mat: 
+
+linear gradient grouse with new 1006 steel pole piece.
+XY plot in with the normal convention. 201 X-steps over 4 cm, 101 Y-steps over 2 cm
+Center is at XZ-origin (centered over magnet), minumum Y-value is with probe tip
+1.8mm below the plane of the pole piece surface (where the sensor is) 
+
+GROUSE_II_new_pole_ZY_3x2.mat:
+
+As above, ZY plane, 151 Z-steps over 3 cm, 101 Y-steps over 2 cm. Centered about the magnet 
+center, Y=0 is with probe tip 1.8mm below pole face
+
+
+ZX: probe sensitive spot where 2nd derivative of field is zero. This occurs about 0.35 cm
+from the magnet face. Measurement was 3 cm x 3 cm, 101 x 10 pts. (i'm not sure about the .35)
+
+GROUSE III measurements: probe is positioned in Y-direction with tip ~1mm from large
+pole surface
+
+ZY: 501 Z-points, 251 Y-points, 20cm x 5 cm. Z-channel is always multiplied by 1000, so is wrong half the time
+X- channel is left unmultiplied and will need to be corrected. Started 8 pm
+
+XY: 401 X-points, 251 Y-points, 8 cm x 5 cm. Same corrections as above needed. Started 7 AM
+
+GROUSE II, Older pole
+
+exact same measurements as for new pole
+the 2nd derivative is zero at about 0.6 cm from the surface, so that's where the XZ measurement
+is.
+
+Really, the y-minimum is probably below zero because the probe tip was 1.8mm below the 
+surface, not the middle of the spot. an offset of half the proble sensitive z-thickness should
+be added.
+
+GROUSE III, no poles
+
+ZY: started with probe tip 8.2mm from magnet surface. 20cm Z by 8 cm Y, 501 x 401 points
+started 4:50 pm Dec 31. Crashed some time in the afternoon on Jan 1. restarted 9:27pm
+
+Have to do it in two parts: ZY1 - 8.2mm to 48.2mm 501x 201 pts
+			    ZY2 = 48.2mm + sz to 88.2mm 501 x 200 pts
+
+Crashed on 2nd part. Restarted, ~48.2mm + sz, doing 50 z points, 1-sz cm
+
+
